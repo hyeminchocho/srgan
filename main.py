@@ -254,16 +254,16 @@ def evaluate():
     valid_lr_img_list = sorted(tl.files.load_file_list(path=config.VALID.lr_img_path, regx='.*.png', printable=False))
 
     ## If your machine have enough memory, please pre-load the whole train set.
-    # train_hr_imgs = tl.vis.read_images(train_hr_img_list, path=config.TRAIN.hr_img_path, n_threads=32)
-    # for im in train_hr_imgs:
-    #     print(im.shape)
-    valid_lr_imgs = tl.vis.read_images(valid_lr_img_list, path=config.VALID.lr_img_path, n_threads=32)
-    # for im in valid_lr_imgs:
-    #     print(im.shape)
-    valid_hr_imgs = tl.vis.read_images(valid_hr_img_list, path=config.VALID.hr_img_path, n_threads=32)
-    # for im in valid_hr_imgs:
-    #     print(im.shape)
-    # exit()
+    train_hr_imgs = tl.vis.read_images(train_hr_img_list, path=config.TRAIN.hr_img_path, n_threads=32)
+    # # for im in train_hr_imgs:
+    # #     print(im.shape)
+    # valid_lr_imgs = tl.vis.read_images(valid_lr_img_list, path=config.VALID.lr_img_path, n_threads=32)
+    # # for im in valid_lr_imgs:
+    # #     print(im.shape)
+    # valid_hr_imgs = tl.vis.read_images(valid_hr_img_list, path=config.VALID.hr_img_path, n_threads=32)
+    # # for im in valid_hr_imgs:
+    # #     print(im.shape)
+    # # exit()
 
     ###========================== DEFINE MODEL ============================###
     imid = 64  # 0: 企鹅  81: 蝴蝶 53: 鸟  64: 古堡
