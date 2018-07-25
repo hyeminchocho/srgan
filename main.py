@@ -231,15 +231,17 @@ def train():
 
         ## quick evaluation on train set
         saveEverySoEpoch = 1
-        if (epoch != 0) and (epoch % saveEverySoEpoch == 0):
-            out = sess.run(net_g_test.outputs, {t_image: sample_imgs_96})  #; print('gen sub-image:', out.shape, out.min(), out.max())
-            print("[*] save images")
-            tl.vis.save_images(out, [ni, ni], save_dir_gan + '/train_%d.png' % epoch)
+        # print("MEEE Outside save images!")
+        # if (epoch != 0) and (epoch % saveEverySoEpoch == 0):
+        print("MEEE Inside save images!")
+        out = sess.run(net_g_test.outputs, {t_image: sample_imgs_96})  #; print('gen sub-image:', out.shape, out.min(), out.max())
+        print("[*] save images")
+        tl.vis.save_images(out, [ni, ni], save_dir_gan + '/train_%d.png' % epoch)
 
         ## save model
-        if (epoch != 0) and (epoch % 10 == 0):
-            tl.files.save_npz(net_g.all_params, name=checkpoint_dir + '/g_{}.npz'.format(tl.global_flag['mode']), sess=sess)
-            tl.files.save_npz(net_d.all_params, name=checkpoint_dir + '/d_{}.npz'.format(tl.global_flag['mode']), sess=sess)
+        # if (epoch != 0) and (epoch % 10 == 0):
+        tl.files.save_npz(net_g.all_params, name=checkpoint_dir + '/g_{}.npz'.format(tl.global_flag['mode']), sess=sess)
+        tl.files.save_npz(net_d.all_params, name=checkpoint_dir + '/d_{}.npz'.format(tl.global_flag['mode']), sess=sess)
 
 
 def evaluate():
