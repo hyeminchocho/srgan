@@ -278,8 +278,7 @@ def evaluate():
     imid = 0  # 0: 企鹅  81: 蝴蝶 53: 鸟  64: 古堡
     valid_lr_img = valid_lr_imgs[imid]
     reSize = valid_lr_img.shape.append(3)
-    print("resize: " + str(reSize))
-    valid_lr_img = tl.prepro.imresize(valid_lr_img, size=reSize);
+    valid_lr_img = tl.prepro.imresize(valid_lr_img, size=[1024, 1403, 3]);
     print("resized: " + str(valid_lr_img.shape))
     # valid_hr_img = valid_hr_imgs[imid]
     # valid_lr_img = get_imgs_fn('test.png', 'data2017/')  # if you want to test your own image
