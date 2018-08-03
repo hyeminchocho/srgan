@@ -275,44 +275,46 @@ def evaluate():
 
     ###========================== DEFINE MODEL ============================###
     # imid = 64  # 0: 企鹅  81: 蝴蝶 53: 鸟  64: 古堡
-    imid = 0  # 0: 企鹅  81: 蝴蝶 53: 鸟  64: 古堡
-    valid_lr_img = valid_lr_imgs[imid]
+    for n in range(len(valid_lr_imgs)):
+    # imid = 0  # 0: 企鹅  81: 蝴蝶 53: 鸟  64: 古堡
+        imid = n
+        valid_lr_img = valid_lr_imgs[imid]
 
-    if type(valid_lr_img.shape) == "tuple":
-        valid_lr_img = np.expand_dims(valid_lr_img, axis=2)
-        print("resized: " + str(valid_lr_img.shape))
-        valid_lr_img = np.concatenate((valid_lr_img, valid_lr_img, valid_lr_img), axis=2)
-        print("resized: " + str(valid_lr_img.shape))
+        if type(valid_lr_img.shape) == "tuple":
+            valid_lr_img = np.expand_dims(valid_lr_img, axis=2)
+            print("resized: " + str(valid_lr_img.shape))
+            valid_lr_img = np.concatenate((valid_lr_img, valid_lr_img, valid_lr_img), axis=2)
+            print("resized: " + str(valid_lr_img.shape))
 
-    # valid_lr_img = get_imgs_fn('test.png', 'data2017/')  # if you want to test your own image
-    valid_lr_img = (valid_lr_img / 127.5) - 1  # rescale to ［－1, 1]
-    # print(valid_lr_img.min(), valid_lr_img.max())
+        # valid_lr_img = get_imgs_fn('test.png', 'data2017/')  # if you want to test your own image
+        valid_lr_img = (valid_lr_img / 127.5) - 1  # rescale to ［－1, 1]
+        # print(valid_lr_img.min(), valid_lr_img.max())
 
-    size = valid_lr_img.shape
-    print("size shape: " + str(size))
-    # t_image = tf.placeholder('float32', [None, size[0], size[1], size[2]], name='input_image') # the old version of TL need to specify the image size
-    t_image = tf.placeholder('float32', [1, None, None, 3], name='input_image')
+        size = valid_lr_img.shape
+        print("size shape: " + str(size))
+        # t_image = tf.placeholder('float32', [None, size[0], size[1], size[2]], name='input_image') # the old version of TL need to specify the image size
+        t_image = tf.placeholder('float32', [1, None, None, 3], name='input_image')
 
-    net_g = SRGAN_g(t_image, is_train=False, reuse=False)
+        net_g = SRGAN_g(t_image, is_train=False, reuse=False)
 
-    ###========================== RESTORE G =============================###
-    sess = tf.Session(config=tf.ConfigProto(allow_soft_placement=True, log_device_placement=False))
-    tl.layers.initialize_global_variables(sess)
-    tl.files.load_and_assign_npz(sess=sess, name=checkpoint_dir + '/g_srgan.npz', network=net_g)
+        ###========================== RESTORE G =============================###
+        sess = tf.Session(config=tf.ConfigProto(allow_soft_placement=True, log_device_placement=False))
+        tl.layers.initialize_global_variables(sess)
+        tl.files.load_and_assign_npz(sess=sess, name=checkpoint_dir + '/g_srgan.npz', network=net_g)
 
-    ###======================= EVALUATION =============================###
-    start_time = time.time()
-    out = sess.run(net_g.outputs, {t_image: [valid_lr_img]})
-    print("took: %4.4fs" % (time.time() - start_time))
+        ###======================= EVALUATION =============================###
+        start_time = time.time()
+        out = sess.run(net_g.outputs, {t_image: [valid_lr_img]})
+        print("took: %4.4fs" % (time.time() - start_time))
 
-    print("LR size: %s /  generated HR size: %s" % (size, out.shape))  # LR size: (339, 510, 3) /  gen HR size: (1, 1356, 2040, 3)
-    print("[*] save images")
-    tl.vis.save_image(out[0], save_dir + '/{}_valid_gen.png'.format(valid_lr_img_list[0][:-4]))
-    tl.vis.save_image(valid_lr_img, save_dir + '/{}_valid_lr.png'.format(valid_lr_img_list[0][:-4]))
-    # tl.vis.save_image(valid_hr_img, save_dir + '/valid_hr.png')
+        print("LR size: %s /  generated HR size: %s" % (size, out.shape))  # LR size: (339, 510, 3) /  gen HR size: (1, 1356, 2040, 3)
+        print("[*] save images")
+        tl.vis.save_image(out[0], save_dir + '/{}_valid_gen.png'.format(valid_lr_img_list[0][:-4]))
+        tl.vis.save_image(valid_lr_img, save_dir + '/{}_valid_lr.png'.format(valid_lr_img_list[0][:-4]))
+        # tl.vis.save_image(valid_hr_img, save_dir + '/valid_hr.png')
 
-    out_bicu = scipy.misc.imresize(valid_lr_img, [size[0] * 4, size[1] * 4], interp='bicubic', mode=None)
-    tl.vis.save_image(out_bicu, save_dir + '/{}_valid_bicubic.png'.format(valid_lr_img_list[0][:-4]))
+        out_bicu = scipy.misc.imresize(valid_lr_img, [size[0] * 4, size[1] * 4], interp='bicubic', mode=None)
+        tl.vis.save_image(out_bicu, save_dir + '/{}_valid_bicubic.png'.format(valid_lr_img_list[0][:-4]))
 
 
 if __name__ == '__main__':
