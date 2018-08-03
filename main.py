@@ -253,7 +253,7 @@ def evaluate():
     ###====================== PRE-LOAD DATA ===========================###
     # train_hr_img_list = sorted(tl.files.load_file_list(path=config.TRAIN.hr_img_path, regx='.*.png', printable=False))
     # train_lr_img_list = sorted(tl.files.load_file_list(path=config.TRAIN.lr_img_path, regx='.*.png', printable=False))
-    valid_hr_img_list = sorted(tl.files.load_file_list(path=config.VALID.hr_img_path, regx='.*.png', printable=False))
+    # valid_hr_img_list = sorted(tl.files.load_file_list(path=config.VALID.hr_img_path, regx='.*.png', printable=False))
     valid_lr_img_list = sorted(tl.files.load_file_list(path=config.VALID.lr_img_path, regx='.*.png', printable=False))
 
     ## If your machine have enough memory, please pre-load the whole train set.
@@ -269,9 +269,10 @@ def evaluate():
     # # exit()
 
     ###========================== DEFINE MODEL ============================###
-    imid = 64  # 0: 企鹅  81: 蝴蝶 53: 鸟  64: 古堡
+    # imid = 64  # 0: 企鹅  81: 蝴蝶 53: 鸟  64: 古堡
+    imid = 0  # 0: 企鹅  81: 蝴蝶 53: 鸟  64: 古堡
     valid_lr_img = valid_lr_imgs[imid]
-    valid_hr_img = valid_hr_imgs[imid]
+    # valid_hr_img = valid_hr_imgs[imid]
     # valid_lr_img = get_imgs_fn('test.png', 'data2017/')  # if you want to test your own image
     valid_lr_img = (valid_lr_img / 127.5) - 1  # rescale to ［－1, 1]
     # print(valid_lr_img.min(), valid_lr_img.max())
@@ -296,7 +297,7 @@ def evaluate():
     print("[*] save images")
     tl.vis.save_image(out[0], save_dir + '/valid_gen.png')
     tl.vis.save_image(valid_lr_img, save_dir + '/valid_lr.png')
-    tl.vis.save_image(valid_hr_img, save_dir + '/valid_hr.png')
+    # tl.vis.save_image(valid_hr_img, save_dir + '/valid_hr.png')
 
     out_bicu = scipy.misc.imresize(valid_lr_img, [size[0] * 4, size[1] * 4], interp='bicubic', mode=None)
     tl.vis.save_image(out_bicu, save_dir + '/valid_bicubic.png')
