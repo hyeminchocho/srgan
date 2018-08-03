@@ -307,12 +307,12 @@ def evaluate():
 
     print("LR size: %s /  generated HR size: %s" % (size, out.shape))  # LR size: (339, 510, 3) /  gen HR size: (1, 1356, 2040, 3)
     print("[*] save images")
-    tl.vis.save_image(out[0], save_dir + '/valid_gen.png')
-    tl.vis.save_image(valid_lr_img, save_dir + '/valid_lr.png')
+    tl.vis.save_image(out[0], save_dir + '/{}_valid_gen.png'.format(valid_lr_img_list[:-4]))
+    tl.vis.save_image(valid_lr_img, save_dir + '/{}_valid_lr.png'.format(valid_lr_img_list[:-4]))
     # tl.vis.save_image(valid_hr_img, save_dir + '/valid_hr.png')
 
     out_bicu = scipy.misc.imresize(valid_lr_img, [size[0] * 4, size[1] * 4], interp='bicubic', mode=None)
-    tl.vis.save_image(out_bicu, save_dir + '/valid_bicubic.png')
+    tl.vis.save_image(out_bicu, save_dir + '/{}_valid_bicubic.png'.format(valid_lr_img_list[:-4]))
 
 
 if __name__ == '__main__':
