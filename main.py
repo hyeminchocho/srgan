@@ -278,7 +278,7 @@ def evaluate():
     imid = 0  # 0: 企鹅  81: 蝴蝶 53: 鸟  64: 古堡
     valid_lr_img = valid_lr_imgs[imid]
 
-    valid_lr_img = np.concatenate((vlid_lr_img, valid_lr_img, valid_lr_img), axis=2)
+    valid_lr_img = np.concatenate((valid_lr_img, valid_lr_img, valid_lr_img), axis=2)
     # valid_lr_img = tl.prepro.imresize(valid_lr_img, size=[1024, 1403, 3]);
     print("resized: " + str(valid_lr_img.shape))
     # valid_hr_img = valid_hr_imgs[imid]
