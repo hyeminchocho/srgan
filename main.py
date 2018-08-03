@@ -289,7 +289,8 @@ def evaluate():
         imid = n
         valid_lr_img = valid_lr_imgs[imid]
 
-        if type(len(valid_lr_img.shape)) == 2:
+
+        if len(valid_lr_img.shape) == 2:
             valid_lr_img = np.expand_dims(valid_lr_img, axis=2)
             print("resized: " + str(valid_lr_img.shape))
             valid_lr_img = np.concatenate((valid_lr_img, valid_lr_img, valid_lr_img), axis=2)
