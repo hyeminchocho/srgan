@@ -273,6 +273,7 @@ def evaluate():
     # #     print(im.shape)
     # # exit()
 
+    print("valid lr img list:" + str(valid_lr_img_list))
     ###========================== DEFINE MODEL ============================###
     # imid = 64  # 0: 企鹅  81: 蝴蝶 53: 鸟  64: 古堡
     for n in range(len(valid_lr_imgs)):
