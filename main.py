@@ -272,6 +272,14 @@ def evaluate():
     # # for im in valid_hr_imgs:
     # #     print(im.shape)
     # # exit()
+    t_image = tf.placeholder('float32', [1, None, None, 3], name='input_image')
+
+    net_g = SRGAN_g(t_image, is_train=False, reuse=False)
+
+    ###========================== RESTORE G =============================###
+    sess = tf.Session(config=tf.ConfigProto(allow_soft_placement=True, log_device_placement=False))
+    tl.layers.initialize_global_variables(sess)
+    tl.files.load_and_assign_npz(sess=sess, name=checkpoint_dir + '/g_srgan.npz', network=net_g)
 
     print("valid lr img list:" + str(valid_lr_img_list))
     ###========================== DEFINE MODEL ============================###
@@ -294,14 +302,6 @@ def evaluate():
         size = valid_lr_img.shape
         print("size shape: " + str(size))
         # t_image = tf.placeholder('float32', [None, size[0], size[1], size[2]], name='input_image') # the old version of TL need to specify the image size
-        t_image = tf.placeholder('float32', [1, None, None, 3], name='input_image')
-
-        net_g = SRGAN_g(t_image, is_train=False, reuse=False)
-
-        ###========================== RESTORE G =============================###
-        sess = tf.Session(config=tf.ConfigProto(allow_soft_placement=True, log_device_placement=False))
-        tl.layers.initialize_global_variables(sess)
-        tl.files.load_and_assign_npz(sess=sess, name=checkpoint_dir + '/g_srgan.npz', network=net_g)
 
         ###======================= EVALUATION =============================###
         start_time = time.time()
