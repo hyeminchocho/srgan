@@ -55,6 +55,7 @@ def train():
     # train_hr_imgs = tl.files.load_flickr25k_dataset(tag=None)
 
     print("MEEE type: " + str(type(train_hr_imgs)))
+    print("MEEE shape: " + str(train_hr_imgs[0].shape))
     if train_hr_imgs[0].shape == 2:
         for k in range(len(train_hr_imgs)):
             train_hr_imgs[k] = np.expand_dims(train_hr_imgs[k], axis=2)
