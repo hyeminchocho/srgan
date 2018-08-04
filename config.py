@@ -23,7 +23,7 @@ config.TRAIN.decay_every = int(config.TRAIN.n_epoch / 2)
 
 ## train set location
 # config.TRAIN.hr_img_path = 'data2017/DIV2K_train_HR/'
-config.TRAIN.hr_img_path = '../Persona/Frames-test/'
+config.TRAIN.hr_img_path = ['../Persona/Frames-test/dir01/', '../Persona/Frames-test/dir02/'] 
 config.TRAIN.lr_img_path = 'data2017/DIV2K_train_LR_bicubic/X4/'
 
 config.VALID = edict()
