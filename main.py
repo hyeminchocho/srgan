@@ -162,10 +162,10 @@ def train():
 #    tl.vis.save_images(sample_imgs_384, [5, 4], save_dir_ginit + '/_train_sample_384.png')
 #    tl.vis.save_images(sample_imgs_96, [5, 4], save_dir_gan + '/_train_sample_96.png')
 #    tl.vis.save_images(sample_imgs_384, [5, 4], save_dir_gan + '/_train_sample_384.png')
-     tl.vis.save_images(sample_imgs_96, [ni, ni], save_dir_ginit + '/_train_sample_96.png')
-     tl.vis.save_images(sample_imgs_384, [ni, ni], save_dir_ginit + '/_train_sample_384.png')
-     tl.vis.save_images(sample_imgs_96, [ni, ni], save_dir_gan + '/_train_sample_96.png')
-     tl.vis.save_images(sample_imgs_384, [ni, ni], save_dir_gan + '/_train_sample_384.png')
+    tl.vis.save_images(sample_imgs_96, [ni, ni], save_dir_ginit + '/_train_sample_96.png')
+    tl.vis.save_images(sample_imgs_384, [ni, ni], save_dir_ginit + '/_train_sample_384.png')
+    tl.vis.save_images(sample_imgs_96, [ni, ni], save_dir_gan + '/_train_sample_96.png')
+    tl.vis.save_images(sample_imgs_384, [ni, ni], save_dir_gan + '/_train_sample_384.png')
 
     ###========================= initialize G ====================###
     ## fixed learning rate
@@ -202,7 +202,7 @@ def train():
         # if (epoch != 0) and (epoch % 10 == 0):
         out = sess.run(net_g_test.outputs, {t_image: sample_imgs_96})  #; print('gen sub-image:', out.shape, out.min(), out.max())
         print("[*] save images")
-         tl.vis.save_images(out, [ni, ni], save_dir_ginit + '/train_%d.png' % epoch)
+        tl.vis.save_images(out, [ni, ni], save_dir_ginit + '/train_%d.png' % epoch)
 #        tl.vis.save_images(out, [5, 4], save_dir_ginit + '/train_%d.png' % epoch)
 
         ## save model
@@ -261,7 +261,7 @@ def train():
         print("MEEE Inside save images!")
         out = sess.run(net_g_test.outputs, {t_image: sample_imgs_96})  #; print('gen sub-image:', out.shape, out.min(), out.max())
         print("[*] save images")
-         tl.vis.save_images(out, [ni, ni], save_dir_gan + '/train_%d.png' % epoch)
+        tl.vis.save_images(out, [ni, ni], save_dir_gan + '/train_%d.png' % epoch)
 #        tl.vis.save_images(out, [5, 4], save_dir_gan + '/train_%d.png' % epoch)
 
         ## save model
