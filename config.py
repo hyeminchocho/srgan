@@ -14,14 +14,14 @@ config.TRAIN.n_epoch_init = 100
     # config.TRAIN.lr_decay_init = 0.1
     # config.TRAIN.decay_every_init = int(config.TRAIN.n_epoch_init / 2)
 
-## adversarial learning (SRGAN)
+## adversarial learning (SRGAN)/
 config.TRAIN.n_epoch = 2000
 config.TRAIN.lr_decay = 0.1
 config.TRAIN.decay_every = int(config.TRAIN.n_epoch / 2)
 
 ## train set location
 # config.TRAIN.hr_img_path = 'data2017/DIV2K_train_HR/'
-config.TRAIN.hr_img_path = '../Persona/Frames-test'
+config.TRAIN.hr_img_path = '../Persona/Frames-test/'
 config.TRAIN.lr_img_path = 'data2017/DIV2K_train_LR_bicubic/X4/'
 
 config.VALID = edict()
