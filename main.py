@@ -38,7 +38,7 @@ def train():
     tl.files.exists_or_mkdir(checkpoint_dir)
 
     ###====================== PRE-LOAD DATA ===========================###
-    train_hr_imgs_list = []
+    train_hr_img_list = []
     for dir in config.TRAIN.hr_img_path:
         train_hr_img_list += sorted(tl.files.load_file_list(path=dir, regx='.*.png', printable=False))
     # train_hr_img_list = sorted(tl.files.load_file_list(path=config.TRAIN.hr_img_path, regx='.*.jpg', printable=False))
