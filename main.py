@@ -154,10 +154,14 @@ def train():
     print('sample HR sub-image:', sample_imgs_384.shape, sample_imgs_384.min(), sample_imgs_384.max())
     sample_imgs_96 = tl.prepro.threading_data(sample_imgs_384, fn=downsample_fn)
     print('sample LR sub-image:', sample_imgs_96.shape, sample_imgs_96.min(), sample_imgs_96.max())
-    tl.vis.save_images(sample_imgs_96, [ni, ni], save_dir_ginit + '/_train_sample_96.png')
-    tl.vis.save_images(sample_imgs_384, [ni, ni], save_dir_ginit + '/_train_sample_384.png')
-    tl.vis.save_images(sample_imgs_96, [ni, ni], save_dir_gan + '/_train_sample_96.png')
-    tl.vis.save_images(sample_imgs_384, [ni, ni], save_dir_gan + '/_train_sample_384.png')
+    tl.vis.save_images(sample_imgs_96, [8, 4], save_dir_ginit + '/_train_sample_96.png')
+    tl.vis.save_images(sample_imgs_384, [8, 4], save_dir_ginit + '/_train_sample_384.png')
+    tl.vis.save_images(sample_imgs_96, [8, 4], save_dir_gan + '/_train_sample_96.png')
+    tl.vis.save_images(sample_imgs_384, [8, 4], save_dir_gan + '/_train_sample_384.png')
+    # tl.vis.save_images(sample_imgs_96, [ni, ni], save_dir_ginit + '/_train_sample_96.png')
+    # tl.vis.save_images(sample_imgs_384, [ni, ni], save_dir_ginit + '/_train_sample_384.png')
+    # tl.vis.save_images(sample_imgs_96, [ni, ni], save_dir_gan + '/_train_sample_96.png')
+    # tl.vis.save_images(sample_imgs_384, [ni, ni], save_dir_gan + '/_train_sample_384.png')
 
     ###========================= initialize G ====================###
     ## fixed learning rate
