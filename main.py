@@ -54,11 +54,13 @@ def train():
     # MEEE load flickr dataset (UPDATE: not work, maybe because legacy tensorboard ver)
     # train_hr_imgs = tl.files.load_flickr25k_dataset(tag=None)
 
-    if len(train_hr_imgs.shape) == 3:
-        train_hr_imgs = np.expand_dims(train_hr_imgs, axis=3)
-        print("resized: " + str(train_hr_imgs.shape))
-        train_hr_imgs = np.concatenate((train_hr_imgs, train_hr_imgs, train_hr_imgs), axis=3)
-        print("resized: " + str(train_hr_imgs.shape))
+    print(str(train_hr_imgs))
+    if train_hr_imgs[0].shape == 2:
+        for k in range(len(train_hr_imgs)):
+            train_hr_imgs[k] = np.expand_dims(train_hr_imgs[k], axis=2)
+            print("resized: " + str(train_hr_imgs[k].shape))
+            train_hr_imgs[k] = np.concatenate((train_hr_imgs[k], train_hr_imgs[k], train_hr_imgs[k]), axis=2)
+            print("resized: " + str(train_hr_imgs[k].shape))
 
 
     # for im in train_hr_imgs:
