@@ -41,7 +41,7 @@ def train():
     train_hr_img_list = []
     for dir in config.TRAIN.hr_img_path_list:
         print("dir: " + dir)
-        train_hr_img_list += sorted(tl.files.load_file_list(path=dir, regx='.*.png', printable=False))
+        train_hr_img_list += sorted(tl.files.load_file_list(path=dir, regx='.*.png', printable=False, keep_prefix=True))
     print(train_hr_img_list)
     # train_hr_img_list = sorted(tl.files.load_file_list(path=config.TRAIN.hr_img_path, regx='.*.jpg', printable=False))
     # print("type of train hr img list")
