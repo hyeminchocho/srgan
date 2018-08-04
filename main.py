@@ -39,7 +39,7 @@ def train():
 
     ###====================== PRE-LOAD DATA ===========================###
     train_hr_img_list = []
-    for dir in config.TRAIN.hr_img_path:
+    for dir in config.TRAIN.hr_img_path_list:
         print("dir: " + dir)
         train_hr_img_list += sorted(tl.files.load_file_list(path=dir, regx='.*.png', printable=False))
     print(train_hr_img_list)
