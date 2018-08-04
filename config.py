@@ -23,8 +23,8 @@ config.TRAIN.decay_every = int(config.TRAIN.n_epoch / 2)
 
 ## train set location
 # config.TRAIN.hr_img_path = 'data2017/DIV2K_train_HR/'
-config.TRAIN.hr_img_path = ''
-config.TRAIN.hr_img_path_list = ['/media/conditionalstudio/REAS_MI_1/Persona/Frames-test/dir01/', '/media/conditionalstudio/REAS_MI_1/Persona/Frames-test/dir02/']
+config.TRAIN.hr_img_path = '../Persona/Frames-all-every100/'
+# config.TRAIN.hr_img_path_list = ['/media/conditionalstudio/REAS_MI_1/Persona/Frames-test/dir01/', '/media/conditionalstudio/REAS_MI_1/Persona/Frames-test/dir02/']
 config.TRAIN.lr_img_path = 'data2017/DIV2K_train_LR_bicubic/X4/'
 
 config.VALID = edict()
