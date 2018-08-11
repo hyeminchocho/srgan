@@ -329,7 +329,7 @@ def evaluate():
 
 
             for i in range(1, config.TRAIN.batch_size):
-                curr_valid_lr_img = np.expand_dims(valid_lr_img, axis=2)
+                curr_valid_lr_img = np.expand_dims(valid_lr_imgs[imid+i], axis=2)
                 print("resized: " + str(curr_valid_lr_img.shape))
                 curr_valid_lr_img = np.concatenate((curr_valid_lr_img, curr_valid_lr_img, curr_valid_lr_img), axis=2)
                 print("resized: " + str(valid_lr_img.shape))
