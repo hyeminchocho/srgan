@@ -347,6 +347,7 @@ def evaluate():
                 
             # valid_lr_img = valid_lr_imgs[imid:imid+config.TRAIN.batch_size]
             valid_lr_img = res_img
+            print("bahbahbah res img shape: " + str(res_img.shape))
 
 
         # valid_lr_img = get_imgs_fn('test.png', 'data2017/')  # if you want to test your own image
