@@ -339,7 +339,10 @@ def evaluate():
 
 
         # valid_lr_img = get_imgs_fn('test.png', 'data2017/')  # if you want to test your own image
-        valid_lr_img = (valid_lr_img / 127.5) - 1  # rescale to ［－1, 1]
+        # Resclae [-1, 1] for each img
+        for i in range(len(valid_lr_img)):
+            valid_lr_img[i] = (valid_lr_img[i] / 127.5) - 1  # rescale to ［－1, 1]
+        # valid_lr_img = (valid_lr_img / 127.5) - 1  # rescale to ［－1, 1]
         # print(valid_lr_img.min(), valid_lr_img.max())
 
         size = valid_lr_img.shape[1:]
