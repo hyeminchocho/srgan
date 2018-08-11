@@ -335,13 +335,22 @@ def evaluate():
                 print("resized: " + str(valid_lr_img.shape))
                 valid_lr_img = np.concatenate(valid_lr_img, curr_valid_lr_img, axis=0)
         else:
-            valid_lr_img = valid_lr_imgs[imid:imid+config.TRAIN.batch_size]
+            curr_lr_img = valid_lr_img[i]
+            curr_valid_lr_img = (curr_valid_lr_img / 127.5) - 1  # rescale to ［－1, 1]
+            res_img = curr_valid_lr_img
+            for i in range(1, len(valid_lr_img)):
+                curr_valid_lr_img = valid_lr_img[i]
+                curr_valid_lr_img = (curr_valid_lr_img / 127.5) - 1  # rescale to ［－1, 1]
+                res_img = np.concatenate(res_img, curr_valid_lr_img, axis=0)
+                
+            # valid_lr_img = valid_lr_imgs[imid:imid+config.TRAIN.batch_size]
+            valid_lr_img = res_img
 
 
         # valid_lr_img = get_imgs_fn('test.png', 'data2017/')  # if you want to test your own image
         # Resclae [-1, 1] for each img
-        for i in range(len(valid_lr_img)):
-            valid_lr_img[i] = (valid_lr_img[i] / 127.5) - 1  # rescale to ［－1, 1]
+        #for i in range(len(valid_lr_img)):
+            #valid_lr_img[i] = (valid_lr_img[i] / 127.5) - 1  # rescale to ［－1, 1]
         # valid_lr_img = (valid_lr_img / 127.5) - 1  # rescale to ［－1, 1]
         # print(valid_lr_img.min(), valid_lr_img.max())
 
