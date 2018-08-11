@@ -337,10 +337,12 @@ def evaluate():
         else:
             curr_valid_lr_img = valid_lr_img[0]
             curr_valid_lr_img = (curr_valid_lr_img / 127.5) - 1  # rescale to ［－1, 1]
+            curr_valid_lr_img = np.expand_dims(curr_valid_lr_img, axis=0)
             res_img = curr_valid_lr_img
             for i in range(1, len(valid_lr_img)):
                 curr_valid_lr_img = valid_lr_img[i]
                 curr_valid_lr_img = (curr_valid_lr_img / 127.5) - 1  # rescale to ［－1, 1]
+                curr_valid_lr_img = np.expand_dims(curr_valid_lr_img, axis=0)
                 res_img = np.concatenate(res_img, curr_valid_lr_img, axis=0)
                 
             # valid_lr_img = valid_lr_imgs[imid:imid+config.TRAIN.batch_size]
