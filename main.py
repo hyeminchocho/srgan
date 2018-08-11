@@ -342,6 +342,7 @@ def evaluate():
             for i in range(1, len(valid_lr_img)):
                 curr_valid_lr_img = valid_lr_img[i]
                 curr_valid_lr_img = (curr_valid_lr_img / 127.5) - 1  # rescale to ［－1, 1]
+                print("curr valid img shape before expand: " + str(curr_valid_lr_img.shape))
                 curr_valid_lr_img = np.expand_dims(curr_valid_lr_img, axis=0)
                 print("curr valid img shape: " + str(curr_valid_lr_img.shape))
                 res_img = np.concatenate((res_img, curr_valid_lr_img), axis=0)
