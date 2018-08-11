@@ -334,6 +334,8 @@ def evaluate():
                 curr_valid_lr_img = np.concatenate((curr_valid_lr_img, curr_valid_lr_img, curr_valid_lr_img), axis=2)
                 print("resized: " + str(valid_lr_img.shape))
                 valid_lr_img = np.concatenate(valid_lr_img, curr_valid_lr_img, axis=0)
+        else:
+            valid_lr_img = valid_lr_imgs[imid:imid+config.TRAIN.batch_size
 
 
         # valid_lr_img = get_imgs_fn('test.png', 'data2017/')  # if you want to test your own image
