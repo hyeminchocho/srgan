@@ -311,23 +311,36 @@ def evaluate():
     print("valid lr img list:" + str(valid_lr_img_list))
     ###========================== DEFINE MODEL ============================###
     # imid = 64  # 0: 企鹅  81: 蝴蝶 53: 鸟  64: 古堡
-    for n in range(len(valid_lr_imgs)):
+    # for n in range(len(valid_lr_imgs)):
+    for n in range(valid_lr_imgs/config.TRAIN.batch_size):
     # imid = 0  # 0: 企鹅  81: 蝴蝶 53: 鸟  64: 古堡
-        imid = n
+        imid = n * config.TRAIN.batch_size
+        # valid_lr_img = valid_lr_imgs[imid]
+        # valid_lr_img = valid_lr_imgs[imid:imid+config.TRAIN.batch_size]
         valid_lr_img = valid_lr_imgs[imid]
 
 
+        # Form the first 3 channel image
         if len(valid_lr_img.shape) == 2:
             valid_lr_img = np.expand_dims(valid_lr_img, axis=2)
             print("resized: " + str(valid_lr_img.shape))
             valid_lr_img = np.concatenate((valid_lr_img, valid_lr_img, valid_lr_img), axis=2)
             print("resized: " + str(valid_lr_img.shape))
 
+
+            for i in range(1, config.TRAIN.batch_size):
+                curr_valid_lr_img = np.expand_dims(valid_lr_img, axis=2)
+                print("resized: " + str(curr_valid_lr_img.shape))
+                curr_valid_lr_img = np.concatenate((curr_valid_lr_img, curr_valid_lr_img, curr_valid_lr_img), axis=2)
+                print("resized: " + str(valid_lr_img.shape))
+                valid_lr_img = np.concatenate(valid_lr_img, curr_valid_lr_img, axis=0)
+
+
         # valid_lr_img = get_imgs_fn('test.png', 'data2017/')  # if you want to test your own image
         valid_lr_img = (valid_lr_img / 127.5) - 1  # rescale to ［－1, 1]
         # print(valid_lr_img.min(), valid_lr_img.max())
 
-        size = valid_lr_img.shape
+        size = valid_lr_img.shape[1:]
         print("size shape: " + str(size))
         # t_image = tf.placeholder('float32', [None, size[0], size[1], size[2]], name='input_image') # the old version of TL need to specify the image size
 
