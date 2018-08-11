@@ -298,7 +298,8 @@ def evaluate():
     # # for im in valid_hr_imgs:
     # #     print(im.shape)
     # # exit()
-    t_image = tf.placeholder('float32', [1, None, None, 3], name='input_image')
+    # t_image = tf.placeholder('float32', [1, None, None, 3], name='input_image')
+    t_image = tf.placeholder('float32', [config.TRAIN.batch_size, None, None, 3], name='input_image')
 
     net_g = SRGAN_g(t_image, is_train=False, reuse=False)
 
