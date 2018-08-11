@@ -31,7 +31,8 @@ config.VALID = edict()
 ## test set location
 config.VALID.hr_img_path = 'data2017/DIV2K_valid_HR/'
 # config.VALID.lr_img_path = 'data2017/DIV2K_valid_LR_bicubic/X4/'
-config.VALID.lr_img_path = 'persona_lr_samples'
+# config.VALID.lr_img_path = 'persona_lr_samples'
+config.VALID.lr_img_path = '../pix2pix-tensorflow/persona_test/test_Pix2pix-EntirePersona'
 
 def log_config(filename, cfg):
     with open(filename, 'w') as f:
