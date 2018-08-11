@@ -335,7 +335,7 @@ def evaluate():
                 print("resized: " + str(valid_lr_img.shape))
                 valid_lr_img = np.concatenate(valid_lr_img, curr_valid_lr_img, axis=0)
         else:
-            curr_lr_img = valid_lr_img[i]
+            curr_lr_img = valid_lr_img[0]
             curr_valid_lr_img = (curr_valid_lr_img / 127.5) - 1  # rescale to ［－1, 1]
             res_img = curr_valid_lr_img
             for i in range(1, len(valid_lr_img)):
