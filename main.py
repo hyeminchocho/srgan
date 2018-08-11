@@ -312,7 +312,7 @@ def evaluate():
     ###========================== DEFINE MODEL ============================###
     # imid = 64  # 0: 企鹅  81: 蝴蝶 53: 鸟  64: 古堡
     # for n in range(len(valid_lr_imgs)):
-    for n in range(valid_lr_imgs/config.TRAIN.batch_size):
+    for n in range(len(valid_lr_imgs)/config.TRAIN.batch_size):
     # imid = 0  # 0: 企鹅  81: 蝴蝶 53: 鸟  64: 古堡
         imid = n * config.TRAIN.batch_size
         # valid_lr_img = valid_lr_imgs[imid]
@@ -351,12 +351,15 @@ def evaluate():
 
         print("LR size: %s /  generated HR size: %s" % (size, out.shape))  # LR size: (339, 510, 3) /  gen HR size: (1, 1356, 2040, 3)
         print("[*] save images")
-        tl.vis.save_image(out[0], save_dir + '/{}_valid_gen.png'.format(valid_lr_img_list[n][:-4]))
-        tl.vis.save_image(valid_lr_img, save_dir + '/{}_valid_lr.png'.format(valid_lr_img_list[n][:-4]))
-        # tl.vis.save_image(valid_hr_img, save_dir + '/valid_hr.png')
 
-        out_bicu = scipy.misc.imresize(valid_lr_img, [size[0] * 4, size[1] * 4], interp='bicubic', mode=None)
-        tl.vis.save_image(out_bicu, save_dir + '/{}_valid_bicubic.png'.format(valid_lr_img_list[n][:-4]))
+        # Save images
+        for i in range(config.TRAIN.batch_size):
+            tl.vis.save_image(out[0], save_dir + '/{}_valid_gen.png'.format(valid_lr_img_list[imid+i][:-4]))
+            tl.vis.save_image(valid_lr_img[i], save_dir + '/{}_valid_lr.png'.format(valid_lr_img_list[imid+i][:-4]))
+            # tl.vis.save_image(valid_hr_img, save_dir + '/valid_hr.png')
+
+            out_bicu = scipy.misc.imresize(valid_lr_img[i], [size[0] * 4, size[1] * 4], interp='bicubic', mode=None)
+            tl.vis.save_image(out_bicu, save_dir + '/{}_valid_bicubic.png'.format(valid_lr_img_list[n][:-4]))
 
 
 if __name__ == '__main__':
